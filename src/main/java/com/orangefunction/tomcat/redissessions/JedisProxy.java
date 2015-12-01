@@ -27,7 +27,9 @@ public class JedisProxy {
     }
 
     public Long setnx(byte[] key, byte[] value) {
-        trace("cmd=setnx, bytes=" + value.length);
+        if (value != null) {
+            trace("cmd=setnx, bytes=" + value.length);
+        }
         return jedis.setnx(key, value);
     }
 
@@ -53,17 +55,23 @@ public class JedisProxy {
 
     public byte[] get(byte[] key) {
         byte[] value = jedis.get(key);
-        trace("cmd=get, bytes=" + value.length);
+        if (value != null) {
+            trace("cmd=get, bytes=" + value.length);
+        }
         return value;
     }
 
     public String set(String key, String value) {
-        trace("cmd=set, length=" + value.length());
+        if (value != null) {
+            trace("cmd=set, length=" + value.length());
+        }
         return jedis.set(key, value);
     }
 
     public String set(byte[] key, byte[] value) {
-        trace("cmd=set, bytes=" + value.length);
+        if (value != null) {
+            trace("cmd=set, bytes=" + value.length);
+        }
         return jedis.set(key, value);
     }
 
